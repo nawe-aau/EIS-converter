@@ -24,4 +24,7 @@ for file in neware_files:
     EC_file['Freq/Hz'] = neware_file['SetFreq'].to_numpy(dtype=float)
     EC_file['Re(Z)/Ohm'] = neware_file['Zreal1'].to_numpy(dtype=float)
     EC_file['-Im(Z)/Ohm'] = -neware_file['Zimg1'].to_numpy(dtype=float)
+    
+    EC_file = EC_file[EC_file['-Im(Z)/Ohm'] >= 0]
+    
     EC_file.to_csv('EC-lab Data/' + file, index=False)
